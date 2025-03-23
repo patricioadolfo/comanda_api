@@ -1,0 +1,123 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+        <div class="container"> 
+            {% if sonido %}
+            <audio id="audio" controls style="display: none;">
+                <source type="audio/mp3" src="{{ sonido.url }}">
+            </audio>
+            {% endif %}
+            <div class="row">
+                <div class="col">
+                    <a type="button" class="btn btn-primary" id="idStartComanda">Iniciar comanda</a> 
+                </div>
+                <div class="col">
+                    <a type="button" class="btn btn-primary" id="idStopComanda">Detener comanda</a> 
+                </div>
+                 
+            </div>
+            <br>
+            <div class="row">
+                <div class="col card-login">           
+                    <table class="table table-dark table-striped-columns table-sm table-borderless">
+                        <thead>
+                            <tr>
+                                <th style="color: #d63384;font-size: small;" scope="col">Comprobante</th>
+                                <th style="color: #d63384;font-size: small;" scope="col">Producto</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaComanda">   
+            
+                        </tbody>
+                    </table>
+                  
+                </div>   
+            </div>
+        </div>
+        
+        
+        <script>
+            /*..............................................................................................
+... PARA VALIDAR LOS DATOS .....................................................
+.............................................................................................
+var csrftoken = $.cookie('csrftoken');
+function csrfSafeMethod(method){
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+..............................................................................................
+... TODOS LOS CURSOS .............................................................
+............................................................................................. */
+$("#idStopComanda").on("click", function(){
+    location.reload();
+});
+
+$("#idStartComanda").on("click", function(){
+    alert("COMANDA")
+    repetirCadaSegundo();
+});
+
+function repetirCadaSegundo() { identificadorIntervaloDeTiempo = setInterval(verComanda, '{{ tiempo }}'); }
+
+function agregarEnTabla(key){
+    
+    if (key['cod'] != undefined ){
+                        valor_retornado ="<tr>"+ 
+                                    "<td>"+key['cod']+"</td>"+
+                                    "<td id="+key['cod']+"></td>"+
+                                    "<tr>";
+        
+                        $('#tablaComanda').prepend(valor_retornado);
+                    
+
+                        let valor_prod;
+                        console.log(key['item'])
+                        for(valor_prod = 0; valor_prod < key['item'].length; valor_prod++){
+                            let key_prod = key['item'][valor_prod];
+                        
+                            let productos= "<li>"+key_prod[0]+"  --  "+key_prod[1]+"  --  "+key_prod[2]+"</li>";               
+                            $("#"+key['cod']).append(productos);
+                        };
+                    
+                var audio = document.getElementById("audio");
+
+                audio.play();
+                
+            }else { 
+                console.log('indefinido');
+            }
+}
+
+function verComanda(){
+	$.ajax({
+		beforeSend : function(xhr, settings){
+			if(!csrfSafeMethod(settings.type) && !this.crossDomain){
+				xhr.setRequestHeader("X-CSRFToken", csrftoken);
+			}
+		},
+		url : "/ver_comanda",
+		type : "GET",
+		success : function(json){
+            console.log(json)
+            if (json != []) {
+                let valor;
+                for(valor = 0; valor < json.length; valor++){ 
+                    let key = json[valor];
+                    agregarEnTabla(key);
+                    };
+                }else { console.log('Error en carga de respuesta');}
+        }, 
+            error : function(xhr, errmsg, err){
+                console.log('Error en carga de respuesta');
+            },
+        
+	});
+};
+        </script>
+    {% endif %}
+
+{% endblock %}

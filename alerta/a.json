@@ -1,0 +1,117 @@
+{
+'id': 
+    '125580000002074725', 
+
+'creationUser': 
+    {'id': '1119600553', 'alias': '495', 'description': 'MARCOS MIÑARRO'}, 
+
+'modificationUser': 
+    {'id': '1119600637', 'alias': 'MIANFA', 'description': 'MIANFA'}, 
+
+'creationDate': '2025-03-21T22:55:38.957-0300', 
+
+'modificationDate': '2025-03-21T22:59:04.418-0300', 
+
+'creationNode': 
+    {'id': '2358600', 'code': '000.001.164.006.001', 'externalCode': None, 'name': 'FCIA MIANFA', 'shortName': 'SAVIO', 'type': None, 'status': None, 'updateDate': None, 'hierarchicalCode': '000.001.164.006.001'}, 
+
+'modificationNode': 
+    {'id': '2358600', 'code': '000.001.164.006.001', 'externalCode': None, 'name': 'FCIA MIANFA', 'shortName': 'SAVIO', 'type': None, 'status': None, 'updateDate': None, 'hierarchicalCode': '000.001.164.006.001'}, 
+    
+'status': {'id': '4', 'name': 'INGR', 'description': 'INGRESADO', 'color': 'NEUTRAL'}, 
+
+'externalCode': None, 
+
+'codification': '0006-00560695', 
+
+'receipt': None, 
+
+'emissionDate': '2025-03-21T22:59:02.689-0300', 
+
+'expirationDate': None, 
+
+'actualizationDate': '2025-03-21T22:59:09.516-0300', 
+
+'mainAmount': 1400.0, 
+
+'generalDiscount': None, 
+
+'authorizationType': {'id': '3', 'description': 'CAE'}, 
+
+'authorizationNumber': '75129715524061', 
+
+'authorizationDate': None, 
+
+'authorizationExpirationDate': '2025-03-31T00:00:00.000-0300', 
+
+'concepts': None, 
+
+'valueType': 
+    {'id': '197', 'name': 'FDVP', 'description': 'FACTURA DE VENTA', 'shortName': 'FA VENTA P', 'abbreviation': 'FV'}, 
+    
+'subValueType': {'id': '337', 'description': 'FACTURA DE VENTA'}, 
+
+'observations': '', 
+
+'vatPeriod': {'id': '1119601363', 'description': '3/2025'}, 
+
+'order': '1', 
+
+'operations': None, 
+
+'metadata': None, 
+
+'letter': 'B', 
+
+'address': None, 
+
+'phone': None, 
+
+'emissionCenter': {'id': '111960000000033364', 'code': '6', 'externalCode': None, 'name': 'CE ELE 06', 'shortName': 'CE ELE 06', 'type': 'CENTROS DE EMISION', 'status': None, 'updateDate': None}, 
+
+'sourceVoucherNumber': '0055-00667680', 
+
+'periodDateFrom': None, 
+
+'periodDateTo': None, 
+
+'cancellation': None, 
+
+'items': [{
+    'id': '125580000004445011', 
+    'number': '125580000004445011', 
+    'itemNumber': 1, 
+    'quantity': 1.0, 
+    'observation': None, 
+    'unitPrice': 1400.0, 
+    'costPrice': 0.0, 
+    'discount': 0, 
+    'amount': 1400.0, 
+    'product': 
+        {'id': '111960000000009033', 
+        'creationUser': {'id': '1119600025', 'alias': 'CAMILA', 'description': 'CAMILA GAMBOA'}, 
+        'modificationUser': {'id': '1119600025', 'alias': 'CAMILA', 'description': 'CAMILA GAMBOA'}, 
+        'creationDate': '2022-11-04T12:59:00.356-0300', 
+        'modificationDate': '2023-06-26T13:23:33.958-0300', 
+        'name': 'KETOROLAC 10MG COMP', 
+        'shortName': 'KETOROLAC 10MG COMP', 
+        'description': 'KETOROLAC 10MG COMP', 
+        'barCode': '991097', 
+        'dieCode': '', 
+        'alfabetaCode': None, 
+        'externalCode': None}, 
+    'vatRate': 
+        {'id': '1', 
+        'name': 'E', 
+        'description': 'EXENTO', 
+        'aliquot': 0.0, 
+        'externalCode': 'E'}, 
+    'totalDiscount': 0.0}], 
+
+'agreements': None, 
+
+'fiscalType': 'E', 
+
+'customer': {'id': '83172', 'code': '99999', 'externalCode': '9999900000001', 'name': 'CONSUMIDOR FINAL, A', 'shortName': 'CONSUMIDOR FINAL', 'type': 'CLIENTES', 'status': 'ACTIVO', 'updateDate': '2024-07-24T15:29:39.383-0300', 'cuit': '20-11111111-2', 'companyName': 'CONSUMIDOR FINAL', 'address': None, 'modificationDate': '2024-02-15T15:36:44.623-0300', 'vatSituation': {'id': '3', 'name': 'CONS.FINAL', 'description': 'CONSUMIDOR FINAL', 'externalCode': 'C'}, 'firstName': 'CONSUMIDOR FINAL, A', 'lastName': 'CONSUMIDOR FINAL', 'documentType': None, 'documentNumber': None, 'email': None, 'groupingEntity': None}
+
+}

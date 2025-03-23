@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% load mi_templatetag %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<div class="row">
+    <h4>
+        <b>Todos mis envíos</b>
+    </h4>
+</div>
+<div class="row">
+    <div class="col-xxl-6 col-xl-6 col-md-6 col-sm-12">
+        <p>Filtra tus envios por destino.</p>
+        <form id="searchr-form"   action="" method="post" >{% csrf_token  %}
+            <div class="row">
+            {% for field in form %}
+                <div class="col-md-6 col-sm-6 col-xl-6 col-xxl-6 campo_busqueda"  >
+                    {{ field.label_tag  }}
+                    {{ field }}
+                </div>
+                {% endfor %}
+                <br>
+                <div class="col-md-4 col-sm-4 col-xl-4 col-xxl-4 abajo">
+                        <input class="btn btn-primary btn-sm" type="button" id="boton_prod" value="Ver envios"/>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-xxl-6 col-xl-6 col-md-6 col-sm-12">
+        <p>Filtra tus envios por fecha.</p>
+        <form id="fechas-form"   action="" method="post" >{% csrf_token  %}
+            <div class="row">
+                {% for field in form_fechas %}
+                <div class="col">
+                    {{ field.label_tag  }}
+                    {{ field }}
+                </div>
+                {% endfor %}
+                <br>
+                <div class="col abajo">
+                    <input class="btn btn-primary btn-sm" type="button" id="porFecha" value="Ver envios"/>
+                </div>              
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col card-login">           
+        <table class="table table-dark table-striped-columns table-sm table-borderless">
+            <thead>
+                <tr>
+                    <th style="color: #d63384;font-size: small;" scope="col">Origen</th>
+                    <th style="color: #d63384;font-size: small;" scope="col">Destino</th>
+                    <th style="color: #d63384;font-size: small;" scope="col">Otro Destino</th>
+                    <th style="color: #d63384;font-size: small;" scope="col">Fecha</th>
+                    <th style="color: #d63384;font-size: small;" scope="col">Hora</th>
+                    <th style="color: #d63384;font-size: small;" scope="col">Estado</th>
+                    <th style="color: #d63384;font-size: small;" scope="col">ID</th>
+                </tr>
+            </thead>
+            <tbody id="tablaEnvios">   
+
+            </tbody>
+        </table>
+      
+    </div>   
+</div>
+
+{% endif %}
+
+{% endblock %}
