@@ -1,0 +1,99 @@
+
+
+$("#idStopComanda").on("click", function(){
+    location.reload();
+});
+
+function agregarEnTabla(key){
+    
+    if (key['cod'] != undefined ){
+                        valor_retornado ="<tr>"+ 
+                                    "<td>"+key['cod']+"</td>"+
+                                    "<td id="+key['cod']+"cant></td>"+
+                                    "<td id="+key['cod']+"prod></td>"+
+                                    "<td id="+key['cod']+"cod></td>"+
+                                    "<tr>";
+        
+                        $('#tablaComanda').prepend(valor_retornado);
+                    
+
+                        let valor_prod;
+                        console.log(key['item'])
+                        for(valor_prod = 0; valor_prod < key['item'].length; valor_prod++){
+                            let key_prod = key['item'][valor_prod];
+           
+                            $("#"+key['cod']+"cant").append("<li class='"+key['cod']+" "+key_prod[2]+"'>"+key_prod[0]+"</li>");
+                            $("#"+key['cod']+"prod").append("<li class='"+key_prod[2]+"'>"+key_prod[1]+"</li>");
+                            $("#"+key['cod']+"cod").append("<li class='codigo "+key_prod[2]+"' name='"+key['cod']+"'>"+key_prod[2]+"</li>");
+                        };
+                    
+                var audio = document.getElementById("audio");
+
+                audio.play();
+                
+            }else { 
+                console.log('indefinido');
+            }
+}
+
+function verComanda(){
+	$.ajax({
+		beforeSend : function(xhr, settings){
+			if(!csrfSafeMethod(settings.type) && !this.crossDomain){
+				xhr.setRequestHeader("X-CSRFToken", csrftoken);
+			}
+		},
+		url : "/ver_comanda",
+		type : "GET",
+		success : function(json){
+            console.log(json)
+            if (json != []) {
+                let valor;
+                for(valor = 0; valor < json.length; valor++){ 
+                    let key = json[valor];
+                    agregarEnTabla(key);
+                    };
+                }else { console.log('Error en carga de respuesta');}
+        }, 
+            error : function(xhr, errmsg, err){
+                console.log('Error en carga de respuesta');
+            },
+        
+	});
+};
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        validadorCodigos();
+        document.getElementById('idCodBarra').value= "";
+    }
+});
+
+function validadorCodigos(){
+    let codBarra = $( "#idCodBarra" ).val();
+    let codigos = document.getElementsByClassName('codigo');
+    let i;
+    for( i=0; i < codigos.length; i++ ){
+        let codigo = codigos[i];
+        let cod = codigo.textContent
+        if (codBarra == cod){
+        let clase = codigo.getAttribute("name");
+        let clases = clase + " " + cod; 
+        let unidades = document.getElementsByClassName(clases)
+        let elemento = unidades[0];
+        let unidad = parseInt(elemento.textContent) - 1;
+        if(unidad == 0){
+            let lineas = elemento.parentElement.parentElement 
+            let eElininar = Array.prototype.slice.call(lineas.getElementsByClassName(cod), 0);             
+            for(element of eElininar){  
+                element.remove();
+            }
+            i = codigos.length;
+        }else{
+            elemento.innerHTML = unidad ;
+            i = codigos.length;
+        };
+    };
+
+    };
+};

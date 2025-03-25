@@ -9,20 +9,5 @@
 		<span class="mb-3 mb-md-0 text-body-secondary">© 2025, Del Aguila</span>
 	  </div>
 	  <ul class="nav col-md-4 justify-content-end list-unstyled d-flex" style="padding-right:20px;">
-		{% if user.is_authenticated %}
-		{% for link in links %}	
-		<li class="ms-3" style="padding: 10px;">
-			<a class="text-body-secondary" href="{{ link.url }}">
-				<div class="row">
-					<img src="/media/{{ link.icono }}" width="24" height="24">
-				</div>
-				<div class="row">
-					{{ link.nombre }}
-				</div>
-				
-			</a>
-		</li>
-		{% endfor %}
-		{% endif %}
 	</ul>
 </footer>

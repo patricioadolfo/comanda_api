@@ -3,7 +3,6 @@
 {% load static %}
 
 {% block layout %}
-{% include "impresiones/modal.html" %}
 <header>
     {% include "header.html" %}
 </header>
@@ -11,8 +10,6 @@
 <div class="container" style="padding-top: 8px;">   
     
     {% if user.is_authenticated %}
-
-        <!--{% include "cabecera.html" %}-->
 
     {% endif %}
         
