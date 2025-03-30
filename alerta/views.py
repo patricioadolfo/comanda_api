@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from server.models import Server
 from alerta.models import Alerta
 from api.models import Api_Server
 from django.views.generic import View
@@ -7,24 +6,24 @@ import json
 from django.http import HttpResponse
 # Create your views here.
 
-server = Server.objects.get( estado = True)
 
-alerta = Alerta.objects.get ( server = server )
+def comanda(request,):
 
-api = Api_Server( server )
+    global alerta
 
-def index(request,):
+    alerta = Alerta.objects.get ( comanda = True )
 
-    api.rango_tiempo( alerta.tiempo )
+    global api
+    
+    api =  Api_Server( alerta.server )
 
     api.obtener_token()
-    
-    tiempo = alerta.tiempo * 1000
+
+    tiempo = alerta.tiempo * 1000 
 
     return render(request, 'comanda/comanda.html', {'sonido': alerta.sonido , 'tiempo': tiempo })
-
 class VerComanda(View):
-    
+
     def is_ajax(self, request):
          
         return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
@@ -37,8 +36,6 @@ class VerComanda(View):
 
             api.rango_tiempo( alerta.tiempo )
 
-            print(api.t_inicio, api.ahora)
-
             temporles = api.obtener_temporales()
 
             if temporles.json() != []:
@@ -47,7 +44,9 @@ class VerComanda(View):
                     
                     data ={}
 
-                    if temporal['codification'] != '9999999999999999':
+                    if temporal['codification'][0:4] == alerta.centro_emision:
+
+                        print(temporal['codification'][0:4])
 
                         data['cod'] = temporal['codification']
             
@@ -68,36 +67,4 @@ class VerComanda(View):
         mimetype = "application/json"
         
         return HttpResponse(data_json, mimetype)
-
-def ver_comanda(request):
-
-    server = Server.objects.get( estado = True)
-
-    tiempo = Alerta.objects.get ( server = server )
-
-    api = Api_Server( server )
-
-    api.rango_tiempo( tiempo.tiempo )
-
-    api.obtener_token()
-
-    temporles = api.obtener_temporales()
-
-    if temporles.json() != []:
-
-        for temporal in temporles.json():
-
-            print(temporal['codification'])
-
-            for item in temporal['items']:
-
-                print(item['product']['name'])
-                print(item['product']['barCode'])
-
-
-            print('///////////////////')
-
-
-
-    return render(request, 'comanda/comanda.html', {})
 

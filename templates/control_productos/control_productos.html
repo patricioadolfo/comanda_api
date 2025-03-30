@@ -16,10 +16,7 @@
             <br>    
             <div class="row">
                 <div class="col">
-                    <a type="button" class="btn btn-primary" id="idStartComanda">Iniciar comanda</a> 
-                </div>
-                <div class="col">
-                    <a type="button" class="btn btn-primary" id="idStopComanda">Detener comanda</a> 
+                    <input class="form-control" type="text" name="first_name" maxlength="150" id="idCodBarra">
                 </div>
             </div>
             <br>
@@ -32,6 +29,7 @@
                                 <th style="color: #d63384;font-size: small;" scope="col">Cantidad</th>
                                 <th style="color: #d63384;font-size: small;" scope="col">Producto</th>
                                 <th style="color: #d63384;font-size: small;" scope="col">Cod. Barras</th>
+                                <th style="color: #d63384;font-size: small;" scope="col">Check</th>
                             </tr>
                         </thead>
                         <tbody id="tablaComanda">   
@@ -48,7 +46,7 @@
         <script type="text/javascript" src="{% static 'js/jquery.cookie.min.js' %}"></script> 
         <script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script> 
 		<script type="text/javascript" src="{% static 'js/qrcode.min.js' %}"></script>   
-        <script type="text/javascript" src="{% static 'js/comanda.js' %}"></script>	
+        <script type="text/javascript" src="{% static 'js/control.productos.js' %}"></script>	
 
         <script>
             function repetirCadaSegundo() { 

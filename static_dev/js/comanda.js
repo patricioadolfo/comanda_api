@@ -1,4 +1,13 @@
-
+/*..............................................................................................
+... PARA VALIDAR LOS DATOS .....................................................
+.............................................................................................*/
+var csrftoken = $.cookie('csrftoken');
+function csrfSafeMethod(method){
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+/*..............................................................................................
+... TODOS LOS CURSOS .............................................................
+............................................................................................. */
 
 $("#idStopComanda").on("click", function(){
     location.reload();
@@ -8,11 +17,11 @@ function agregarEnTabla(key){
     
     if (key['cod'] != undefined ){
                         valor_retornado ="<tr>"+ 
-                                    "<td>"+key['cod']+"</td>"+
+                                    "<td><li>"+key['cod']+"</li></td>"+
                                     "<td id="+key['cod']+"cant></td>"+
                                     "<td id="+key['cod']+"prod></td>"+
                                     "<td id="+key['cod']+"cod></td>"+
-                                    "<tr>";
+                                    "</tr>";
         
                         $('#tablaComanda').prepend(valor_retornado);
                     
@@ -22,9 +31,9 @@ function agregarEnTabla(key){
                         for(valor_prod = 0; valor_prod < key['item'].length; valor_prod++){
                             let key_prod = key['item'][valor_prod];
            
-                            $("#"+key['cod']+"cant").append("<li class='"+key['cod']+" "+key_prod[2]+"'>"+key_prod[0]+"</li>");
-                            $("#"+key['cod']+"prod").append("<li class='"+key_prod[2]+"'>"+key_prod[1]+"</li>");
-                            $("#"+key['cod']+"cod").append("<li class='codigo "+key_prod[2]+"' name='"+key['cod']+"'>"+key_prod[2]+"</li>");
+                            $("#"+key['cod']+"cant").append("<p class='"+key['cod']+" "+key_prod[2]+"'>"+key_prod[0]+"</p>");
+                            $("#"+key['cod']+"prod").append("<p class='"+key_prod[2]+"'>"+key_prod[1]+"</p>");
+                            $("#"+key['cod']+"cod").append("<p class='codigo "+key_prod[2]+"' name='"+key['cod']+"'>"+key_prod[2]+"</p>");
                         };
                     
                 var audio = document.getElementById("audio");
@@ -62,38 +71,4 @@ function verComanda(){
 	});
 };
 
-document.addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        validadorCodigos();
-        document.getElementById('idCodBarra').value= "";
-    }
-});
 
-function validadorCodigos(){
-    let codBarra = $( "#idCodBarra" ).val();
-    let codigos = document.getElementsByClassName('codigo');
-    let i;
-    for( i=0; i < codigos.length; i++ ){
-        let codigo = codigos[i];
-        let cod = codigo.textContent
-        if (codBarra == cod){
-        let clase = codigo.getAttribute("name");
-        let clases = clase + " " + cod; 
-        let unidades = document.getElementsByClassName(clases)
-        let elemento = unidades[0];
-        let unidad = parseInt(elemento.textContent) - 1;
-        if(unidad == 0){
-            let lineas = elemento.parentElement.parentElement 
-            let eElininar = Array.prototype.slice.call(lineas.getElementsByClassName(cod), 0);             
-            for(element of eElininar){  
-                element.remove();
-            }
-            i = codigos.length;
-        }else{
-            elemento.innerHTML = unidad ;
-            i = codigos.length;
-        };
-    };
-
-    };
-};

@@ -5,11 +5,17 @@ class Alerta(models.Model):
 
     nombre = models.CharField( max_length = 20, blank = False )
 
-    server = models.ForeignKey( Server, on_delete= models.CASCADE, null= False )
+    server = models.ForeignKey( Server, on_delete = models.CASCADE, null = False )
 
-    tiempo = models.IntegerField(null= False, default = 3)
+    centro_emision = models.CharField( max_length = 4, default = '0055' )
 
-    sonido = models.FileField(upload_to= "media/sonido", null= True)
+    tiempo = models.IntegerField(null = False, default = 3)
+
+    sonido = models.FileField(upload_to = "sonido", null = True)
+
+    comanda = models.BooleanField(default = False )
+
+    control_producto = models.BooleanField(default = False )
 
     def __str__(self,):
 

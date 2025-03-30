@@ -14,7 +14,7 @@ class AlertaAdmin(admin.ModelAdmin):
         
         ('Alerta', 
          
-         {'fields': ['nombre', 'server', 'tiempo', 'sonido']}, 
+         {'fields': ['nombre', 'server', 'centro_emision' ,'comanda' ,'control_producto','tiempo', 'sonido']}, 
           
           ),
 

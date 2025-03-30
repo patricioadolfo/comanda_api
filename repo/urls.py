@@ -25,6 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', include('alerta.urls')),
+
+    path('', include('control_productos.urls')),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

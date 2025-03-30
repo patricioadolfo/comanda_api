@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'server.apps.ServerConfig',
     'alerta.apps.AlertaConfig',
+    'control_productos.apps.ControlProductosConfig',
 ]
 
 MIDDLEWARE = [

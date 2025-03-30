@@ -12,8 +12,6 @@ class Server(models.Model):
     usuario = models.CharField( max_length = 20, null = False, default= 'a' )
 
     contraseña = models.CharField( max_length= 20, null= False, default= 'aa' )
-
-    estado = models.BooleanField()
     
     def __str__(self,):
 

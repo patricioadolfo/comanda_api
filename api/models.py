@@ -61,6 +61,8 @@ class Api_Server():
 
         self.token = token.json()['access_token']
 
+        print(self.token)
+
     def obtener_temporales(self,):
 
       header= {
@@ -96,3 +98,40 @@ class Api_Server():
       temporales = requests.post(url, headers= header, json= data)
 
       return temporales
+
+    def obtener_temporal(self, temporal):
+
+        header= {
+          
+            'accept': 'application/json',
+              
+            'Content-Type': 'application/json',
+          
+            'Authorization': 'Bearer ' + self.token 
+          
+        }
+      
+        data= {
+          
+            #"letter": "B",
+        
+            #"idValueType": 197,
+        
+            #"emissionDateFrom": self.t_inicio,
+        
+            #"emissionDateTo": self.ahora, 
+
+            "codification": temporal,
+        }
+
+        url= 'http://{ip}:{puerto}/api-rest/v2/2307101/sales-receipts/search?per_page=10&ascending_order=true&include_concepts=false&include_items=true&include_agreements=false&include_completed=true&include_others=true'.format(
+          
+            ip = self.ip[0],
+
+            puerto = str(self.puerto[0])
+          
+        )
+
+        temporal = requests.post(url, headers= header, json= data)
+
+        return temporal
