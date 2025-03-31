@@ -33,7 +33,7 @@ class ControlarProductos(View):
         
         if self.is_ajax( request = request ):
 
-            tmp = request.GET['temporal']
+            tmp = request.GET['temporal'][1:]
 
             api.rango_tiempo( alerta.tiempo )
 
