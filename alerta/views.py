@@ -46,8 +46,6 @@ class VerComanda(View):
 
                     if temporal['codification'][0:4] == alerta.centro_emision:
 
-                        print(temporal['codification'][0:4])
-
                         data['cod'] = temporal['codification']
             
                         data['item'] = []
@@ -55,7 +53,9 @@ class VerComanda(View):
                         for item in temporal['items']:
 
                             data['item'].append([ item['quantity'], item['product']['name'], item['product']['barCode']])
-                
+
+                    else: 
+                        print(temporal['codification'])
                 
                 results.append(data)
 
@@ -65,6 +65,8 @@ class VerComanda(View):
             data_json = "fallo"
         
         mimetype = "application/json"
+
+        print(data_json)
         
         return HttpResponse(data_json, mimetype)
 

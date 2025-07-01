@@ -16,7 +16,8 @@ $("#idStopComanda").on("click", function(){
 function agregarEnTabla(key){
     
     if (key['cod'] != undefined ){
-                        valor_retornado ="<tr>"+ 
+  
+                                    valor_retornado ="<tr>"+ 
                                     "<td><li>"+key['cod']+"</li></td>"+
                                     "<td id="+key['cod']+"cant></td>"+
                                     "<td id="+key['cod']+"prod></td>"+
@@ -27,7 +28,6 @@ function agregarEnTabla(key){
                     
 
                         let valor_prod;
-                        console.log(key['item'])
                         for(valor_prod = 0; valor_prod < key['item'].length; valor_prod++){
                             let key_prod = key['item'][valor_prod];
            
@@ -41,7 +41,8 @@ function agregarEnTabla(key){
                 audio.play();
                 
             }else { 
-                console.log('indefinido');
+                console.log(key);
+                console.log('indefinido');  
             }
 }
 
@@ -55,7 +56,6 @@ function verComanda(){
 		url : "/ver_comanda",
 		type : "GET",
 		success : function(json){
-            console.log(json)
             if (json != []) {
                 let valor;
                 for(valor = 0; valor < json.length; valor++){ 

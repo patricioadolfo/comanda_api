@@ -16,10 +16,12 @@ function agregarEnTabla(key){
             for(i = 0; i < key['item'].length; i++){
                 item = "<tr id='linea "+key['cod']+" "+ key['item'][i][2]+"'>"+
                         "<td>"+key['cod']+"</td>"+
-                        "<td class='cantidad "+key['cod']+" "+ key['item'][i][2]+"'>"+key['item'][i][0]+"</td>"+
+                        "<td class='unidad "+key['cod']+" "+ key['item'][i][2]+"'>"+key['item'][i][0]+"</td>"+
                         "<td>"+key['item'][i][1]+"</td>"+
                         "<td class='codigo' name= '"+key['cod']+" "+key['item'][i][2]+"'>"+key['item'][i][2]+"</td>"+
-                        "<td><a type='button' id='check'>ok</a></td>"
+                        "<td>"+
+                            "<input class= 'cantidad "+key['cod']+" "+ key['item'][i][2]+"'  onchange='ingresoManual(this)' type='number' maxlength='10' value='0'>"+
+                        "</td>"+
                         "</tr>";
                 $('#tablaComanda').prepend(item);
             };              
@@ -72,24 +74,30 @@ function validadorCodigos(codBar){
     
         let codigo = codigos[i];
         let cod = codigo.textContent;
-        
+
         if (codBar == cod){
 
             let name = codigo.getAttribute('name')
 
             let cantidad = document.getElementsByClassName("cantidad "+ name);
+ 
+            let unidad = parseInt(cantidad[0].value) + 1;
+            
+            let cant = document.getElementsByClassName("unidad "+ name)
 
-            let unidad = parseInt(cantidad[0].innerHTML) - 1;
-  
-            if(unidad == 0){
+            console.log(cant[0].textContent)
+
+            if(unidad == parseInt(cant[0].textContent)){
                 
-                let aEliminar = cantidad[0].parentElement;
+                let aEliminar = cantidad[0].parentElement.parentElement;
                 
                 aEliminar.remove();
             
             }else {
-                let linea = cantidad[0].parentElement;
-                cantidad[0].innerHTML = unidad ;
+                //let linea = cantidad[0].parentElement;
+                cantidad[0].value = unidad ;
+                console.log(cantidad[0].value)
+                //$("."+ "cantidad "+ name ).val(unidad);
                 i = codigos.length;
             
             };
@@ -103,3 +111,14 @@ $("#check").on("click", function(){
     let linea = $(this).parentElement;
     console.log(linea)
 });
+
+function ingresoManual(obj){
+    let unidad = $(obj).parent().parent().find('.unidad');
+     
+    if( obj.value == unidad[0].textContent ){
+
+        let aEliminar = obj.parentElement.parentElement;
+
+         aEliminar.remove();
+     }
+}

@@ -27,11 +27,5 @@ class ServerAdmin(admin.ModelAdmin):
           {'fields': ['usuario', 'contraseña']},
         
           ),
-
-        ('Estado',
-        
-          {'fields': ['estado',]},
-        
-          ),
     
     ]
