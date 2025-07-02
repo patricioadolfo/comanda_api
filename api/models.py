@@ -55,13 +55,10 @@ class Api_Server():
             contraseña = self.contraseña
         
         )
-        print(urltoken)
 
         token = requests.post( urltoken, headers = header, data = dato )
 
         self.token = token.json()['access_token']
-
-        print(self.token)
 
     def obtener_temporales(self,):
 
@@ -112,14 +109,6 @@ class Api_Server():
         }
       
         data= {
-          
-            #"letter": "B",
-        
-            #"idValueType": 197,
-        
-            #"emissionDateFrom": self.t_inicio,
-        
-            #"emissionDateTo": self.ahora, 
 
             "codification": temporal,
         }

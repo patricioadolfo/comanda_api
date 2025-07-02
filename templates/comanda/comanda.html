@@ -44,11 +44,10 @@
         </div>
 
         {% block scripts %}
-		<!-- jquery para producción -->
+
         <script type="text/javascript" src="{% static 'js/jquery.cookie.min.js' %}"></script> 
         <script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script> 
-		<script type="text/javascript" src="{% static 'js/qrcode.min.js' %}"></script>   
-        <script type="text/javascript" src="{% static 'js/comanda.js' %}"></script>	
+        <script type="text/javascript" src="{% static 'js/comanda/comanda.js' %}"></script>	
 
         <script>
             function repetirCadaSegundo() { 
@@ -57,7 +56,7 @@
             
             $("#idStartComanda").on("click", function(){
                 verComanda();
-                alert("COMANDA");
+                alert("Comanda");
                 repetirCadaSegundo();
             });
         </script>

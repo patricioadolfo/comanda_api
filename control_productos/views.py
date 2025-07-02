@@ -6,7 +6,6 @@ import json
 from django.http import HttpResponse
 # Create your views here.
 
-
 def control_productos(request,):
 
     global alerta

@@ -1,13 +1,9 @@
-/*..............................................................................................
-... PARA VALIDAR LOS DATOS .....................................................
-.............................................................................................*/
+
 var csrftoken = $.cookie('csrftoken');
 function csrfSafeMethod(method){
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
-/*..............................................................................................
-... TODOS LOS CURSOS .............................................................
-............................................................................................. */
+
 
 $("#idStopComanda").on("click", function(){
     location.reload();
@@ -16,19 +12,19 @@ $("#idStopComanda").on("click", function(){
 function agregarEnTabla(key){
     
     if (key['cod'] != undefined ){
-  
                                     valor_retornado ="<tr>"+ 
-                                    "<td><li>"+key['cod']+"</li></td>"+
-                                    "<td id="+key['cod']+"cant></td>"+
-                                    "<td id="+key['cod']+"prod></td>"+
-                                    "<td id="+key['cod']+"cod></td>"+
-                                    "</tr>";
+                                                        "<td><li>"+key['cod']+"</li></td>"+
+                                                        "<td id="+key['cod']+"cant></td>"+
+                                                        "<td id="+key['cod']+"prod></td>"+
+                                                        "<td id="+key['cod']+"cod></td>"+
+                                                    "</tr>";
         
                         $('#tablaComanda').prepend(valor_retornado);
-                    
 
                         let valor_prod;
+
                         for(valor_prod = 0; valor_prod < key['item'].length; valor_prod++){
+
                             let key_prod = key['item'][valor_prod];
            
                             $("#"+key['cod']+"cant").append("<p class='"+key['cod']+" "+key_prod[2]+"'>"+key_prod[0]+"</p>");
